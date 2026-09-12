@@ -8,14 +8,22 @@
 class Solution {
 public:
     int subarraysDivByK(vector<int>& nums, int k) {
-        unordered_map<int, int> frequency;
-        frequency[0]++;
-        int sum = 0, result = 0;
-        for (int value : nums) {
-            sum += value;
-            int remainder = ((sum % k) + k) % k;
-            if (frequency.find(remainder) != frequency.end()) result += frequency[remainder];
-            frequency[remainder]++;
+        int n = nums.size();
+        unordered_map<int,int>mpp;
+        int sum = 0;
+        int result=0;
+        // as empty array has sum=0 and 0%k = 0
+        mpp[sum%k]++;
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
+            int rem  = ((sum%k)+k)%k;
+            // if(rem<0){
+            //     rem+=k;
+            // }
+            if(mpp.find(rem)!=mpp.end()){
+                result+=mpp[rem];
+            }
+            mpp[rem]++;
         }
         return result;
     }

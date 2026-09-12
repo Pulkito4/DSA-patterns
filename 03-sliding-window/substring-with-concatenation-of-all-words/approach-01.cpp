@@ -8,39 +8,55 @@
 class Solution {
 public:
     vector<int> findSubstring(string s, vector<string>& words) {
-        int wordLength = words[0].size();
-        int wordCount = words.size();
-        unordered_map<string, int> required;
-        for (string& word : words) required[word]++;
-        vector<int> result;
+        int n = s.size();
+        int wordLen = words[0].size();
+        int k = words.size();
+        vector<int> res;
 
-        for (int offset = 0; offset < wordLength; offset++) {
-            unordered_map<string, int> frequency;
-            int left = offset, validWords = 0;
-            for (int right = offset; right + wordLength <= s.size(); right += wordLength) {
-                string word = s.substr(right, wordLength);
-                if (!required.count(word)) {
-                    frequency.clear();
-                    validWords = 0;
-                    left = right + wordLength;
+        // store all the words in a hashmap
+        unordered_map<string, int> mp;
+        for (int i = 0; i < k; i++) {
+            mp[words[i]]++;
+        }
+
+        for (int i = 0; i < wordLen; i++) {
+            unordered_map<string, int> freq;
+            int low = i, high = i;
+            int validWordCount =0;
+            while (high+wordLen <= n) {
+                string currword = s.substr(high, wordLen);
+                high += wordLen;
+
+                //if substr word is garbage, move to next starting point
+                if (mp.count(currword) == 0) {
+                    low = high;
+                    freq.clear();
+                    validWordCount =0;
                     continue;
                 }
-                frequency[word]++;
-                validWords++;
-                while (frequency[word] > required[word]) {
-                    frequency[s.substr(left, wordLength)]--;
-                    left += wordLength;
-                    validWords--;
-                }
-                if (validWords == wordCount) {
-                    result.push_back(left);
-                    frequency[s.substr(left, wordLength)]--;
-                    left += wordLength;
-                    validWords--;
+                //valid word i.e present in all words map
+                else {
+                    freq[currword]++;
+                    validWordCount++;
+                    // in case our substr word has more entries than original word list
+                    while (freq[currword] > mp[currword]) {
+                        freq[s.substr(low,wordLen)]--;
+                        low += wordLen;
+                        validWordCount--; // word is valid but of no use to us 
+                    }
+
+                    // if no. of valid words = total words in original map/words arru
+                    if(validWordCount==k){
+                        res.push_back(low);
+                        // after using shrink window to move ahead
+                        freq[s.substr(low,wordLen)]--;
+                        validWordCount--;
+                        low+=wordLen;
+                    }
                 }
             }
         }
-        return result;
+        return res;
     }
 };
 // @lc code=end

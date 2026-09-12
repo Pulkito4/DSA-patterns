@@ -8,17 +8,27 @@
 class Solution {
 public:
     int totalFruit(vector<int>& fruits) {
-        unordered_map<int, int> frequency;
-        int left = 0, result = 0;
-        for (int right = 0; right < fruits.size(); right++) {
-            frequency[fruits[right]]++;
-            while (frequency.size() > 2) {
-                if (--frequency[fruits[left]] == 0) frequency.erase(fruits[left]);
-                left++;
-            }
-            result = max(result, right - left + 1);
+        int n = fruits.size();
+        if (n==0){
+            return 0;
         }
-        return result;
+        int low = 0;
+        int max_fruits = 0;
+        unordered_map<int,int> freq;
+        for(int high=0;high<n;high++){
+            freq[fruits[high]]++;
+            // since 2 baskets => k=2
+            while(freq.size()>2){
+                freq[fruits[low]]--;
+                if(freq[fruits[low]]==0){
+                    freq.erase(fruits[low]);
+                }
+                low++;
+            }
+            int len = high-low+1;
+            max_fruits=max(max_fruits,len);
+        }
+        return max_fruits;
     }
 };
 // @lc code=end

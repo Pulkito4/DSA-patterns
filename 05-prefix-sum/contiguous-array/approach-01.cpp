@@ -8,20 +8,26 @@
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
-        unordered_map<int, int> firstIndex;
-        int zeros = 0, ones = 0, result = 0;
-        for (int i = 0; i < nums.size(); i++) {
-            nums[i] == 0 ? zeros++ : ones++;
-            int difference = zeros - ones;
-            if (difference == 0) {
-                result = max(result, i + 1);
-            } else if (firstIndex.find(difference) != firstIndex.end()) {
-                result = max(result, i - firstIndex[difference]);
+        int n = nums.size();
+        int zeroes = 0, ones = 0;
+        int res = 0;
+        unordered_map<int, int> diff_idx;
+        for (int i = 0; i < n; i++) {
+            nums[i] == 0 ? zeroes++ : ones++;
+            int diff = zeroes - ones;
+            if (diff == 0) {
+                res = max(res, i + 1);
+                continue;
             } else {
-                firstIndex[difference] = i;
+                if (diff_idx.find(diff) != diff_idx.end()) {
+                    res = max(res, i - diff_idx[diff]);
+                } else {
+                    // we havent seen this difference in hashmap yet
+                    diff_idx[diff] = i;
+                }
             }
         }
-        return result;
+        return res;
     }
 };
 // @lc code=end

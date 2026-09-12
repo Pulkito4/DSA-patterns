@@ -8,15 +8,28 @@
 class Solution {
 public:
     int longestOnes(vector<int>& nums, int k) {
-        int left = 0, zeros = 0, result = 0;
-        for (int right = 0; right < nums.size(); right++) {
-            if (nums[right] == 0) zeros++;
-            while (zeros > k) {
-                if (nums[left++] == 0) zeros--;
-            }
-            result = max(result, right - left + 1);
+        int n = nums.size();
+        if(n==0){
+            return 0;
         }
-        return result;
+        int res = 0;
+        int low = 0;
+        int zeros = 0;
+        for(int high =0;high<n;high++){
+            if(nums[high]==0){
+                zeros++;
+            }
+            while(zeros>k){
+                if(nums[low]==0){
+                    zeros--;
+                }
+                low++;
+            }
+            // diff <= k --> we can flip
+            int len = high -low +1;
+            res = max(res,len);
+        }
+        return res;
     }
 };
 // @lc code=end

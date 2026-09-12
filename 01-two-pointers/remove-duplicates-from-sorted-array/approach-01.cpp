@@ -8,20 +8,29 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        int i = 0;
+        int i=0;
         int n = nums.size();
-        int j = 1;
+        int j= 1;
         int count = 1;
 
-        while (j < n) {
-            if (nums[j] == nums[j - 1]) {
+        while(j<n){
+            if(nums[j]==nums[j-1]){
                 j++;
                 continue;
             }
-            nums[++i] = nums[j++];
+            // means now j is at unique element
+            nums[++i]= nums[j++];
             count++;
         }
         return count;
+
+        // int i=0;
+        // for (int j=1;j<nums.size();j++){
+        //     if(nums[i]!=nums[j]){
+        //         nums[++i]=nums[j];
+        //     }
+        // }
+        // return i+1;
     }
 };
 // @lc code=end

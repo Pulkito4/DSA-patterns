@@ -7,15 +7,49 @@
 // @lc code=start
 class Solution {
 public:
+
+    // int findMax(vector<int> arr){
+    //     int maxVal = 0;
+    //     for (int val : arr) {
+    //         if (val > maxVal) {
+    //             maxVal = val;
+    //         }
+    //     }
+    //     return maxVal;
+    // }
+
     int characterReplacement(string s, int k) {
-        vector<int> frequency(256, 0);
-        int left = 0, result = 0, maxCount = 0;
-        for (int right = 0; right < s.size(); right++) {
-            maxCount = max(maxCount, ++frequency[s[right]]);
-            if (right - left + 1 - maxCount > k) frequency[s[left++]]--;
-            result = max(result, right - left + 1);
+        int n = s.size();
+        if(n==0){
+            return 0;
+        } 
+        int low=0;
+        int res = 0;
+        int maxCnt = 0;
+        vector<int> freq(256,0);
+        for(int high =0;high<n;high++){
+            freq[s[high]]++;
+            // int maxCnt = findMax(freq);
+            maxCnt = max(maxCnt , freq[s[high]]);
+            int len = high -low+1;
+            int diff = len-maxCnt;
+            // while(diff>k){
+            //     freq[s[low]]--;
+            //     low++;
+            //     len = high-low+1;
+            //     diff = len - maxCnt;
+            // }
+            if(diff>k){
+                freq[s[low]]--;
+                low++;
+                diff = len - maxCnt;
+            }
+
+
+            len = high-low+1;
+            res = max(res, len);
         }
-        return result;
+        return res;
     }
 };
 // @lc code=end

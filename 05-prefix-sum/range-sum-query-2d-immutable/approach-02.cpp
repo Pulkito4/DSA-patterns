@@ -11,39 +11,51 @@ private:
 
 public:
     NumMatrix(vector<vector<int>>& matrix) {
+        
         int rows = matrix.size();
         int cols = matrix[0].size();
 
-        // padding original matrix with a row and col of 0s
-        prefix = vector<vector<int>>(rows + 1, vector<int>(cols + 1, 0));
+        // Padding with an extra row and column of 0s
+        prefix = vector<vector<int>>(
+            rows + 1,
+            vector<int>(cols + 1, 0)
+        );
 
-        // precomputing prefix sums
+        // Precomputing prefix sums
         for (int r = 0; r < rows; r++) {
+
+            // Running sum of the current row
+            int rowPrefix = 0;
+
             for (int c = 0; c < cols; c++) {
-                // inclusion exclusion principle
-                // rectangle = matrix element + above part + left part - double
-                // counted corner
-                prefix[r + 1][c + 1] = matrix[r][c] + prefix[r][c + 1] +
-                                       prefix[r + 1][c] - prefix[r][c];
+
+                // Add current element to current row's running sum
+                rowPrefix += matrix[r][c];
+
+                // Sum of everything above this position
+                int above = prefix[r][c + 1];
+
+                // Current row's sum + everything above
+                prefix[r + 1][c + 1] = rowPrefix + above;
             }
         }
     }
 
     int sumRegion(int row1, int col1, int row2, int col2) {
-        // Shift all original target coordinates by +1 because of our padding
-        int r1 = row1 + 1;
-        int c1 = col1 + 1;
-        int r2 = row2 + 1;
-        int c2 = col2 + 1;
 
-        int rectangle = prefix[r2][c2];
-        int left = prefix[r2][c1 - 1];
-        int top = prefix[r1 - 1][c2];
-        int top_left_corner = prefix[r1 - 1][c1 - 1];
+        // Bottom-right corner of target rectangle
+        int rectangle = prefix[row2 + 1][col2 + 1];
 
-        // top left corner is double counted i.e we need to add it one time
-        // otherwise math is wrong
-        return (rectangle - left - top + top_left_corner);
+        // Remove everything to the left
+        int left = prefix[row2 + 1][col1];
+
+        // Remove everything above
+        int top = prefix[row1][col2 + 1];
+
+        // Add back top-left because it was subtracted twice
+        int topLeft = prefix[row1][col1];
+
+        return rectangle - left - top + topLeft;
     }
 };
 // @lc code=end
