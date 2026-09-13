@@ -13,6 +13,9 @@ Compute the shortest distances from the `src` to all other vertices. If a vertex
 
 ### Example 1:
 - **Input:** `V = 5, edges[][] = [[1, 3, 2], [4, 3, -1], [2, 4, 1], [1, 2, 1], [0, 1, 5]], src = 0`
+
+![Example 1 Graph](images/example1.jpg)
+
 - **Output:** `[0, 5, 6, 6, 7]`
 - **Explanation:**
   - For `0` to `1`, distance is `5` (`0 -> 1`).
@@ -22,6 +25,9 @@ Compute the shortest distances from the `src` to all other vertices. If a vertex
 
 ### Example 2:
 - **Input:** `V = 4, edges[][] = [[0, 1, 4], [1, 2, -6], [2, 3, 5], [3, 1, -2]], src = 0`
+
+![Example 2 Graph](images/example2.jpg)
+
 - **Output:** `[-1]`
 - **Explanation:** The graph contains a negative weight cycle formed by the path `1 -> 2 -> 3 -> 1`, where the total weight of the cycle is negative.
 

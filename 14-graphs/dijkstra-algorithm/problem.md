@@ -15,6 +15,9 @@ Find the shortest distance of all the vertices from the source vertex `src`, and
 
 ### Example 1:
 - **Input:** `V = 3, edges[][] = [[0, 1, 1], [1, 2, 3], [0, 2, 6]], src = 2`
+
+![Example 1 Graph](images/example1.jpg)
+
 - **Output:** `[4, 3, 0]`
 - **Explanation:**
   - For `2` to `0`, minimum distance is `4` (`2 -> 1 -> 0`).
@@ -23,6 +26,9 @@ Find the shortest distance of all the vertices from the source vertex `src`, and
 
 ### Example 2:
 - **Input:** `V = 5, edges[][] = [[0, 1, 4], [0, 2, 8], [1, 4, 6], [2, 3, 2], [3, 4, 10]], src = 0`
+
+![Example 2 Graph](images/example2.jpg)
+
 - **Output:** `[0, 4, 8, 10, 10]`
 - **Explanation:**
   - For `0` to `1`, minimum distance is `4` (`0 -> 1`).

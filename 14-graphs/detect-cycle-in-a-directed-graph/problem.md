@@ -13,11 +13,17 @@ Check whether the graph contains any cycle. Return `true` if there exists at lea
 
 ### Example 1:
 - **Input:** `V = 4, edges[][] = [[0, 1], [1, 2], [2, 0], [2, 3]]`
+
+![Example 1 Graph](images/example1.jpg)
+
 - **Output:** `true`
 - **Explanation:** There is a cycle: `0 -> 1 -> 2 -> 0`.
 
 ### Example 2:
 - **Input:** `V = 4, edges[][] = [[0, 1], [0, 2], [1, 2], [2, 3]]`
+
+![Example 2 Graph](images/example2.jpg)
+
 - **Output:** `false`
 - **Explanation:** No cycle exists in the graph.
 

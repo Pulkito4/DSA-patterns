@@ -13,11 +13,17 @@ Given an undirected graph with `V` vertices numbered from `0` to `V - 1` and `E`
 
 ### Example 1:
 - **Input:** `V = 9, edges[][] = [[0, 1], [0, 3], [1, 2], [3, 4], [4, 5], [2, 6], [5, 6], [6, 7], [6, 8], [7, 8]], src = 0, dest = 8`
+
+![Example 1 Graph](images/example1.jpg)
+
 - **Output:** `4`
 - **Explanation:** One of the shortest paths from vertex `0` to vertex `8` is `0 -> 1 -> 2 -> 6 -> 8`, which contains 4 edges.
 
 ### Example 2:
 - **Input:** `V = 4, edges[][] = [[0, 3], [1, 3]], src = 3, dest = 2`
+
+![Example 2 Graph](images/example2.webp)
+
 - **Output:** `-1`
 - **Explanation:** There is no path between vertices `3` and `2`.
 

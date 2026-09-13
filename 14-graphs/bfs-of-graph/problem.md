@@ -14,7 +14,7 @@ Given a connected undirected graph containing `V` vertices, represented by a 2D 
 ### Example 1:
 - **Input:** `adj[][] = [[2, 3, 1], [0], [0, 4], [0], [2]]`
 
-<img src="https://media.geeksforgeeks.org/img-practice/PROD/addEditProblem/700170/Web/Other/d12b07e5-1ee7-4a6a-8ff4-3b10b06ba67e_1685086551.png" alt="Example 1 Graph" style="max-width: 400px;" />
+![Example 1 Graph](images/example1.jpg)
 
 - **Output:** `[0, 2, 3, 1, 4]`
 - **Explanation:** Starting from 0, the BFS traversal will follow these steps:
@@ -27,7 +27,7 @@ Given a connected undirected graph containing `V` vertices, represented by a 2D 
 ### Example 2:
 - **Input:** `adj[][] = [[1, 2], [0, 2], [0, 1, 3, 4], [2], [2]]`
 
-<img src="https://media.geeksforgeeks.org/img-practice/PROD/addEditProblem/700170/Web/Other/2efc2250-9bbd-424d-b638-348500fd59e8_1685086551.png" alt="Example 2 Graph" style="max-width: 400px;" />
+![Example 2 Graph](images/example2.jpg)
 
 - **Output:** `[0, 1, 2, 3, 4]`
 - **Explanation:** Starting from 0, the BFS traversal proceeds as follows:

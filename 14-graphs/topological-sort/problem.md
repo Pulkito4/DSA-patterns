@@ -15,11 +15,17 @@ A topological ordering is a linear ordering of the vertices such that for every 
 
 ### Example 1:
 - **Input:** `V = 4, E = 3, edges[][] = [[3, 0], [1, 0], [2, 0]]`
+
+![Example 1 Graph](images/example1.jpg)
+
 - **Output:** `true`
 - **Explanation:** The output `true` denotes that the order is valid. Valid topological orders include `[3, 2, 1, 0]`, `[1, 2, 3, 0]`, `[2, 3, 1, 0]`.
 
 ### Example 2:
 - **Input:** `V = 6, E = 6, edges[][] = [[1, 3], [2, 3], [4, 1], [4, 0], [5, 0], [5, 2]]`
+
+![Example 2 Graph](images/example2.jpg)
+
 - **Output:** `true`
 - **Explanation:** The output `true` denotes that the order is valid. Valid topological orders include `[4, 5, 0, 1, 2, 3]`, `[5, 2, 4, 0, 1, 3]`.
 
